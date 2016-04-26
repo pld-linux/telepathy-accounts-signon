@@ -6,7 +6,9 @@ Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://gitlab.com/accounts-sso/telepathy-accounts-signon/tags
-Source0:	https://gitlab.com/accounts-sso/telepathy-accounts-signon/repository/archive.tar.gz?ref=%{version}
+# TODO: in the future use fake GET arg to force sane filename on df
+#Source0:	https://gitlab.com/accounts-sso/telepathy-accounts-signon/repository/archive.tar.bz2?ref=%{version}&fake_out=/%{name}-%{version}.tar.bz2
+Source0:	archive.tar.gz%3Fref=%{version}
 # Source0-md5:	e24f554c764079d938cab71439a2e555
 URL:		https://gitlab.com/accounts-sso/telepathy-accounts-signon
 BuildRequires:	libaccounts-glib-devel
