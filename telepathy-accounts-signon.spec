@@ -1,20 +1,20 @@
 Summary:	Telepathy providers for libaccounts/libsignon
 Summary(pl.UTF-8):	Biblioteki Telepathy dla libaccounts/libsignon
 Name:		telepathy-accounts-signon
-Version:	1.0
+Version:	2.0
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://gitlab.com/accounts-sso/telepathy-accounts-signon/tags
-# TODO: in the future use fake GET arg to force sane filename on df
-#Source0:	https://gitlab.com/accounts-sso/telepathy-accounts-signon/repository/archive.tar.bz2?ref=%{version}&fake_out=/%{name}-%{version}.tar.bz2
-Source0:	archive.tar.gz%3Fref=%{version}
-# Source0-md5:	e24f554c764079d938cab71439a2e555
+Source0:	https://gitlab.com/accounts-sso/telepathy-accounts-signon/-/archive/%{version}/%{name}-%{version}.tar.bz2
+# Source0-md5:	972acfd54cd2ff09a18ada3a7bb7c76b
 URL:		https://gitlab.com/accounts-sso/telepathy-accounts-signon
 BuildRequires:	libaccounts-glib-devel
-BuildRequires:	libsignon-glib-devel
+BuildRequires:	libsignon-glib-devel >= 2.0
+BuildRequires:	meson
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	qt5-qmake
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	telepathy-mission-control-devel
 Requires:	telepathy-mission-control
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -32,26 +32,22 @@ komunikatorów. Kod jest oparty na gałęzi Nemo Mobile wtyczki z obsługą
 ubunto-online-account dla Empathy.
 
 %prep
-%setup -q -n telepathy-accounts-signon-%{version}-a4ae42797a9799fcbecb4c15bd9bd408e34c2eeb
+%setup -q
 
 %build
-qmake-qt5 \
-	QMAKE_CXX="%{__cxx}" \
-	QMAKE_CXXFLAGS_RELEASE="%{rpmcxxflags}" \
-	QMAKE_LFLAGS_RELEASE="%{rpmldflags}"
+%meson build
 
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	INSTALL_ROOT=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc NOTES README
+%doc README.md
 %attr(755,root,root) %{_libdir}/mission-control-plugins.0/mcp-account-manager-accounts-sso.so
