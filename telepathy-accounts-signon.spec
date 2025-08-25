@@ -14,7 +14,7 @@ BuildRequires:	libsignon-glib-devel >= 2.0
 BuildRequires:	meson
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pkgconfig
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	telepathy-mission-control-devel
 Requires:	telepathy-mission-control
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
