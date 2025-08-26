@@ -1,13 +1,13 @@
 Summary:	Telepathy providers for libaccounts/libsignon
 Summary(pl.UTF-8):	Biblioteki Telepathy dla libaccounts/libsignon
 Name:		telepathy-accounts-signon
-Version:	2.0
+Version:	2.1
 Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://gitlab.com/accounts-sso/telepathy-accounts-signon/tags
 Source0:	https://gitlab.com/accounts-sso/telepathy-accounts-signon/-/archive/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	972acfd54cd2ff09a18ada3a7bb7c76b
+# Source0-md5:	057c905f0ee88a18e8ffb295608b5523
 URL:		https://gitlab.com/accounts-sso/telepathy-accounts-signon
 BuildRequires:	libaccounts-glib-devel
 BuildRequires:	libsignon-glib-devel >= 2.0
